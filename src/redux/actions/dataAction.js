@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM } from '../types';
+import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM,DELETE_SCREAM } from '../types';
 
 //get All screams
 export const getScreams = () => (dispatch) => {
