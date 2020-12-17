@@ -3,6 +3,7 @@ import { Add, Home, Notifications } from '@material-ui/icons';
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PostScrem from '../components/PostScream'
 
 export class NavBar extends Component {
     render() {
@@ -12,12 +13,7 @@ export class NavBar extends Component {
                 <Toolbar className="nav-container">
                     {authenticated ? (
                         <Fragment>
-                            <Tooltip title="Post A scream">
-                                <Icon>
-                                    <Add />
-                                </Icon>
-                            </Tooltip>
-
+                         <PostScrem></PostScrem>
                             <Tooltip title="Home">
                                 <Icon>
                                     <Home />

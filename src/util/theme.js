@@ -1,3 +1,4 @@
+
 export default {
     palette: {
         primary: {
@@ -90,6 +91,61 @@ export default {
             '& a': {
                 margin: '20px 10px'
             }
+        }
+    },
+
+    Scream: {
+        card: {
+            display: 'flex',
+            marginBottom: 20
+        },
+
+        image: {
+            minwidth: 200
+        },
+        media: {
+            height: 140,
+            width: 140,
+        },
+        content: {
+            padding: 25,
+            objectFit: 'cover'
+        },
+
+    },
+    ScreamDialog: {
+        submitButton: {
+            submitButton: "relative",
+            float: "right",
+            marginTop: 10
+        },
+        closeButton: {
+            position: 'absolute',
+            left: '91%',
+            top: '6%'
+        }
+    },
+    PostScream: {
+        submitButton: {
+            position: 'relative',
+            float: 'right',
+            marginTop: 10
+        },
+        progressSpinner: {
+            position: 'absolute'
+        },
+        closeButton: {
+            position: 'absolute',
+            left: '91%',
+            top: '6%'
+        }
+    },
+
+    deleteButton: {
+        deleteButton: {
+            position: 'absolute',
+            left: '2200%',
+            top: '10%'
         }
     }
 

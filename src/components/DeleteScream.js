@@ -1,11 +1,13 @@
 import { Button, Dialog, DialogActions, DialogTitle, IconButton, Tooltip, withStyles } from '@material-ui/core'
-import { DeleteOutline } from '@material-ui/icons'
+import { Delete, DeleteOutline } from '@material-ui/icons'
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { deleteScream } from '../redux/actions/dataAction';
-const styles = {
+const styles = (theme) => ({
+    ...theme.deleteButton,
+   
+})
 
-}
 
 export class DeleteScream extends Component {
     state = {
@@ -34,7 +36,7 @@ export class DeleteScream extends Component {
             <Fragment>
                 <Tooltip title="Delete Scream">
                     <IconButton onClick={this.handleOpen}>
-                        <DeleteOutline color="secondary"></DeleteOutline>
+                        <Delete color="primary" className={classes.deleteButton}></Delete>
                     </IconButton>
 
                 </Tooltip>

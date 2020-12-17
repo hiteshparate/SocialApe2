@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Button, Link, Paper, Typography, withStyles, IconButton, Tooltip } from '@material-ui/core';
+import { Button, Paper, Typography, withStyles, IconButton, Tooltip} from '@material-ui/core';
+import MuiLink from '@material-ui/core/Link'
 import { CalendarToday, ExitToApp, LocationOn } from '@material-ui/icons';
 import dayjs from 'dayjs';
+import {Link} from 'react-router-dom'
 import LinkIcon from '@material-ui/icons/Link';
 import EditIcon from '@material-ui/icons/Edit';
 import { logoutUser, uploadImage } from '../redux/actions/userAction'
@@ -55,7 +57,7 @@ class Profile extends Component {
                         </div>
                         <hr />
                         <div className="profile-details">
-                            <Link component={Link} to={`/users/${handle}`} color="primary" variant="h5">@{handle}</Link>
+                            <MuiLink component={Link} to={`/users/${handle}`} color="primary" variant="h5">@{handle}</MuiLink>
                         </div>
                         <hr />
                         {bio && <Typography variant="body2"> {bio}</Typography>}

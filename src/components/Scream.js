@@ -8,28 +8,13 @@ import { likeScream, unlikeScream } from '../redux/actions/dataAction'
 import ChatIcon from '@material-ui/icons/Chat'
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import DeleteScream from './DeleteScream';
+import { ScreamDialog } from './ScreamDialog'
+
+const styles = (theme) => ({
+    ...theme.Scream,
 
 
-const styles = {
-
-    card: {
-        display: 'flex',
-        marginBottom: 20
-    },
-
-    image: {
-        minwidth: 200
-    },
-    media: {
-        height: 140,
-        width: 140,
-    },
-    content: {
-        padding: 25,
-        objectFit: 'cover'
-    }
-
-};
+});
 
 class Scream extends Component {
     likedScream = () => {
@@ -50,7 +35,7 @@ class Scream extends Component {
     render() {
         const { classes,
             scream: {
-                userImage, userHandle, body, createdAt, likeCount, commentCount
+                userImage, userHandle, body, createdAt, likeCount, commentCount, screamId
             },
             user: {
                 authenticated,
@@ -99,8 +84,8 @@ class Scream extends Component {
                 <CardContent className={classes.content}>
                     <Typography variant="h5" component={Link} to={`/user/${userHandle}`} color="primary">{userHandle}</Typography>
                     {deleteButton}
-                    <Typography variant="body2">{dayjs(createdAt).fromNow()}</Typography>
-                    <Typography variant="body1">{body}</Typography>
+                    <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
+                    <Typography variant="h5">{body}</Typography>
                     {likeButton}
                     <span>{likeCount} likes</span>
                     <Tooltip title="comments" placement="bottom">
@@ -109,6 +94,7 @@ class Scream extends Component {
                         </IconButton>
                     </Tooltip>
                     <span>{commentCount} comments</span>
+                    <ScreamDialog screamId={screamId} userHandle={userHandle}></ScreamDialog>
                 </CardContent>
             </Card>
         )
