@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, IconButton, Tooltip, Typography, withStyles } from '@material-ui/core';
+import { Button, Card, CardContent, CardMedia, IconButton, Tooltip, Typography, withStyles } from '@material-ui/core';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import React, { Component } from 'react'
@@ -9,6 +9,9 @@ import ChatIcon from '@material-ui/icons/Chat'
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import DeleteScream from './DeleteScream';
 import { ScreamDialog } from './ScreamDialog'
+import { fetchScream } from '../redux/actions/dataAction'
+import { LikeButton } from './LikeButton';
+
 
 const styles = (theme) => ({
     ...theme.Scream,
@@ -25,6 +28,9 @@ class Scream extends Component {
             return false;
         }
     }
+    fetchScream = () => {
+        this.props.fetchScream(this.props.scream.screamId);
+    }
 
     likeScream = () => {
         this.props.likeScream(this.props.scream.screamId);
@@ -33,6 +39,7 @@ class Scream extends Component {
         this.props.unlikeScream(this.props.scream.screamId);
     }
     render() {
+        console.log(this.props);
         const { classes,
             scream: {
                 userImage, userHandle, body, createdAt, likeCount, commentCount, screamId
@@ -40,7 +47,11 @@ class Scream extends Component {
             user: {
                 authenticated,
                 credentials: { handle }
-            } } = this.props;
+            },
+            UI: {
+                loading
+            }
+        } = this.props;
 
         const deleteButton = authenticated && userHandle === handle ? (
             <DeleteScream screamId={this.props.scream.screamId}></DeleteScream>
@@ -78,6 +89,7 @@ class Scream extends Component {
         dayjs.extend(relativeTime)
 
         return (
+            
             <Card className={classes.card}>
                 <CardMedia component="img" image={userImage} title="Profile Image" alt="profile image" className={classes.media}>
                 </CardMedia>
@@ -86,7 +98,9 @@ class Scream extends Component {
                     {deleteButton}
                     <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                     <Typography variant="h5">{body}</Typography>
-                    {likeButton}
+                   <LikeButton screamId={screamId}></LikeButton>
+                   {likeButton}
+                   
                     <span>{likeCount} likes</span>
                     <Tooltip title="comments" placement="bottom">
                         <IconButton className="button">
@@ -94,7 +108,8 @@ class Scream extends Component {
                         </IconButton>
                     </Tooltip>
                     <span>{commentCount} comments</span>
-                    <ScreamDialog screamId={screamId} userHandle={userHandle}></ScreamDialog>
+                    {/* <Button onClick={this.fetchScream}>button</Button> */}
+                    <ScreamDialog scream={this.props.scream} userHandle={userHandle} ></ScreamDialog>
                 </CardContent>
             </Card>
         )
@@ -102,12 +117,14 @@ class Scream extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user
+    user: state.user,
+    UI: state.UI,
 })
 
 const mapActionsToProps = {
     likeScream,
     unlikeScream,
+    fetchScream
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));

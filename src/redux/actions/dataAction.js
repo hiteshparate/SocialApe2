@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, POST_SCREAM, STOP_LOADING_UI } from '../types';
+import { SET_SCREAMS, SET_SCREAM,LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, POST_SCREAM, STOP_LOADING_UI } from '../types';
 
 //get All screams
 export const getScreams = () => (dispatch) => {
@@ -19,7 +19,7 @@ export const getScreams = () => (dispatch) => {
 }
 
 //get details of one Scream 
-export const getScream = (screamId) => dispatch => {
+export const fetchScream = (screamId) => dispatch => {
     dispatch({ type: LOADING_UI });
     Axios.get(`/scream/${screamId}`).then((res) => {
         dispatch({
@@ -27,9 +27,9 @@ export const getScream = (screamId) => dispatch => {
             payload: res.data
         });
         dispatch({ type: STOP_LOADING_UI });
-    }).catch((err) => {
+    }).catch(
         err => console.log(err)
-    })
+    )
 }
 
 //Like A Scrream
