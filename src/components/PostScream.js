@@ -76,8 +76,6 @@ export class PostScream extends Component {
 
                         <IconButton onClick={this.handleClose} className={classes.closeButton}>
                             <Close />
-
-
                         </IconButton>
                     </Tooltip>
                     <DialogTitle >

@@ -8,7 +8,9 @@ import {
     CLEAR_ERRORS,
     POST_SCREAM,
     LOADING_UI,
-    SET_ERRORS
+    SET_ERRORS,
+    SET_SCREAM,
+    STOP_LOADING_UI
 } from '../types';
 
 //get All screams
@@ -28,8 +30,15 @@ export const getScreams = () => (dispatch) => {
 
 }
 
-export const getScream = () => (dispatch) => {
-
+export const getScream = (screamId) => (dispatch) => {
+    dispatch({ type: LOADING_UI })
+    Axios.get(`/scream/${screamId}`).then(res => {
+        dispatch({
+            type: SET_SCREAM,
+            payload: res.data,
+        });
+        dispatch({ type: STOP_LOADING_UI });
+    }).catch(err => console.log(err));
 }
 
 //Like A Scrream

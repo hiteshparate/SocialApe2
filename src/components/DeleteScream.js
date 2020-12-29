@@ -39,7 +39,7 @@ export class DeleteScream extends Component {
             <Fragment>
                 <Tooltip title="Delete Scream" className={classes.DeleteButton}>
                     <IconButton onClick={this.handleOpen}>
-                        <Delete color="primary"></Delete>
+                        <Delete color="action"></Delete>
 
                     </IconButton>
 

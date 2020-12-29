@@ -8,10 +8,10 @@ import { likeScream, unlikeScream } from '../redux/actions/dataAction'
 import ChatIcon from '@material-ui/icons/Chat'
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import DeleteScream from './DeleteScream';
-
+import ScreamDialog from './ScreamDialog';
 
 const styles = {
-
+    
     card: {
         display: 'flex',
         marginBottom: 20
@@ -50,7 +50,7 @@ class Scream extends Component {
     render() {
         const { classes,
             scream: {
-                userImage, userHandle, body, createdAt, likeCount, commentCount
+                userImage, userHandle, body, createdAt, likeCount, commentCount,screamId
             },
             user: {
                 authenticated,
@@ -109,7 +109,7 @@ class Scream extends Component {
                         </IconButton>
                     </Tooltip>
                     <span>{commentCount} comments</span>
-                    
+                    <ScreamDialog screamId={screamId} userHandle={userHandle}></ScreamDialog>
                 </CardContent>
             </Card>
         )
