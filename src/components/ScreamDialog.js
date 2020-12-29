@@ -17,7 +17,7 @@ const styles = {
         left: '91%',
         top: '6%'
     },
-    invisibleSep: {
+    invisibleSeparator: {
         boarder: 'none',
         margin: '4'
     },
@@ -45,10 +45,10 @@ const styles = {
         marginLeft: 150,
         marginBottom: 50
     },
-    Dialog: {
-        margin: '32px',
-        position: 'relative',
+    dialogContent : {
+        
     }
+   
 }
 
 export class ScreamDialog extends Component {
@@ -98,7 +98,7 @@ export class ScreamDialog extends Component {
                         <UnfoldMoreRounded></UnfoldMoreRounded>
                     </IconButton>
                 </Tooltip>
-                <Dialog open={this.state.open} className={classes.Dialog} onClose={this.handleClose} scroll="paper" TransitionComponent={Transition}>
+                <Dialog open={this.state.open}  onClose={this.handleClose} scroll="paper" TransitionComponent={Transition}>
                     <Tooltip title="close">
 
                         <IconButton onClick={this.handleClose} className={classes.closeButton}>
