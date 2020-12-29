@@ -5,9 +5,7 @@ export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     Axios.post('/login', userData)
         .then(res => {
-            const FBIdToken = `Bearer ${res.data.token}`;
-            localStorage.setItem('FBIdtoken', FBIdToken);
-            Axios.defaults.headers.common['Authorization'] = FBIdToken;
+            setAuthorizationHeader(res.data.token);
             dispatch(getUserData());
             dispatch({ type: CLEAR_ERRORS });
             history.push('/');
@@ -33,9 +31,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     Axios.post('/signup', newUserData)
         .then(res => {
-            const FBIdToken = `Bearer ${res.data.token}`;
-            localStorage.setItem('FBIdtoken', FBIdToken);
-            Axios.defaults.headers.common['Authorization'] = FBIdToken;
+            setAuthorizationHeader(res.data.token);
             dispatch(getUserData());
             dispatch({ type: CLEAR_ERRORS });
             history.push('/');
@@ -70,4 +66,10 @@ export const editUserDetails = (userDetails) => (dispatch) => {
     Axios.post('/user', userDetails).then(() => {
         dispatch(getUserData());
     }).catch(err => console.log(err));
+}
+
+export const setAuthorizationHeader = (token) => {
+    const FBIdToken = `Bearer ${token}`;
+    localStorage.setItem('FBIdToken', token);
+    Axios.defaults.headers.common['Authorization'] = FBIdToken;
 }

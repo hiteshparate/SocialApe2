@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Button, Link, Paper, Typography, withStyles, IconButton, Tooltip } from '@material-ui/core';
+import { Button, Paper, Typography, withStyles, IconButton, Tooltip } from '@material-ui/core';
 import { CalendarToday, ExitToApp, LocationOn } from '@material-ui/icons';
 import dayjs from 'dayjs';
 import LinkIcon from '@material-ui/icons/Link';
 import EditIcon from '@material-ui/icons/Edit';
 import { logoutUser, uploadImage } from '../redux/actions/userAction'
 import EditProfile from './EditProfile';
-
+import {Link} from 'react-router-dom'
 const styles = (theme) => ({
     ...theme.Profile
 })

@@ -109,6 +109,7 @@ class Scream extends Component {
                         </IconButton>
                     </Tooltip>
                     <span>{commentCount} comments</span>
+                    
                 </CardContent>
             </Card>
         )
