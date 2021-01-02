@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { SET_ERRORS, SET_USER, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER } from '../types';
+import { SET_ERRORS, SET_USER, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER, MARK_NOTIFICATIONS_READ } from '../types';
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
@@ -19,6 +19,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 }
 
 export const getUserData = () => (dispatch) => {
+    dispatch({ type: LOADING_USER });
     Axios.get('/user').then((res) => {
         dispatch({
             type: SET_USER,
@@ -46,15 +47,15 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 }
 
 export const logoutUser = () => (dispatch) => {
-    dispatch({ type: LOADING_USER })
-    localStorage.removeItem('FBIDToken');
+
+    localStorage.removeItem('FBIdToken');
     delete Axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED });
 };
 
 export const uploadImage = (formData) => (dispatch) => {
     dispatch({ type: LOADING_USER });
-    Axios.post('/user/image', formData).then((res) => {
+    Axios.post('/user/image', formData).then(() => {
         dispatch(getUserData());
     }).catch(err => {
         console.log(err);
@@ -68,8 +69,16 @@ export const editUserDetails = (userDetails) => (dispatch) => {
     }).catch(err => console.log(err));
 }
 
+export const markNotificationsRead = (notificationIds) => dispatch => {
+    Axios.post('/notifications', notificationIds).then(res => {
+        dispatch({
+            type: MARK_NOTIFICATIONS_READ,
+        })
+    }).catch(err => console.log(err));
+}
+
 export const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
-    localStorage.setItem('FBIdToken', token);
+    localStorage.setItem('FBIdToken', FBIdToken);
     Axios.defaults.headers.common['Authorization'] = FBIdToken;
 }

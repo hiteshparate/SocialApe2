@@ -4,14 +4,15 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { likeScream, unlikeScream } from '../redux/actions/dataAction'
+import { likeScream, unlikeScream } from '../../redux/actions/dataAction'
 import ChatIcon from '@material-ui/icons/Chat'
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
+import LikeButton from './LikeButton';
 
 const styles = {
-    
+
     card: {
         display: 'flex',
         marginBottom: 20
@@ -32,25 +33,11 @@ const styles = {
 };
 
 class Scream extends Component {
-    likedScream = () => {
-        if (this.props.user.likes && this.props.user.likes.find(like => like.screamId === this.props.scream.screamId)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-    likeScream = () => {
-        this.props.likeScream(this.props.scream.screamId);
-    }
-    unlikeScream = () => {
-        this.props.unlikeScream(this.props.scream.screamId);
-    }
     render() {
         const { classes,
             scream: {
-                userImage, userHandle, body, createdAt, likeCount, commentCount,screamId
+                userImage, userHandle, body, createdAt, likeCount, commentCount, screamId
             },
             user: {
                 authenticated,
@@ -63,32 +50,7 @@ class Scream extends Component {
                 null
             )
 
-        const likeButton = !authenticated ? (
-            <Tooltip title="Like">
-                <IconButton>
-                    <Link to='/login'>
-                        <FavoriteBorder color="primary">
 
-                        </FavoriteBorder>
-                    </Link>
-                </IconButton>
-            </Tooltip>
-
-        ) : (
-                this.likedScream() ? (
-                    <Tooltip title="undo like">
-                        <IconButton onClick={this.unlikeScream}>
-                            <Favorite color="primary" />
-                        </IconButton>
-                    </Tooltip>
-                ) : (
-                        <Tooltip title="Like">
-                            <IconButton onClick={this.likeScream}>
-                                <FavoriteBorder color="primary" />
-                            </IconButton>
-                        </Tooltip>
-                    )
-            )
 
         dayjs.extend(relativeTime)
 
@@ -101,7 +63,8 @@ class Scream extends Component {
                     {deleteButton}
                     <Typography variant="body2">{dayjs(createdAt).fromNow()}</Typography>
                     <Typography variant="body1">{body}</Typography>
-                    {likeButton}
+                    {/* {likeButton} */}
+                    <LikeButton screamId={screamId}></LikeButton>
                     <span>{likeCount} likes</span>
                     <Tooltip title="comments" placement="bottom">
                         <IconButton className="button">
@@ -109,7 +72,7 @@ class Scream extends Component {
                         </IconButton>
                     </Tooltip>
                     <span>{commentCount} comments</span>
-                    <ScreamDialog screamId={screamId} userHandle={userHandle}></ScreamDialog>
+                    <ScreamDialog screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog}></ScreamDialog>
                 </CardContent>
             </Card>
         )
@@ -121,8 +84,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = {
-    likeScream,
-    unlikeScream,
+
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));

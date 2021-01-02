@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogTitle, IconButton, Tooltip, withSt
 import { Delete, DeleteOutline } from '@material-ui/icons'
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { deleteScream } from '../redux/actions/dataAction';
+import { deleteScream } from '../../redux/actions/dataAction';
 const styles = {
     DeleteButton:{
         position : 'absolute',

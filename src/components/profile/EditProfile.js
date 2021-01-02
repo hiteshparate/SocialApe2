@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, 
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import EditIcon from '@material-ui/icons/Edit'
-import { editUserDetails } from '../redux/actions/userAction'
+import { editUserDetails } from '../../redux/actions/userAction'
 
 const styles = (theme) => ({
     ...theme.Profile,

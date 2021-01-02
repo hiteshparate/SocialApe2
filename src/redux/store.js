@@ -1,7 +1,7 @@
 import userReducer from './reducers/userReducer';
 import dataReducer from './reducers/dataReducer';
 import uiReducer from './reducers/uiReducer';
-const { combineReducers, createStore, compose, applyMiddleware} = require("redux");
+const { combineReducers, createStore, compose, applyMiddleware } = require("redux");
 const { default: thunk } = require("redux-thunk");
 
 
@@ -20,7 +20,7 @@ const store = createStore(
     initialState,
     compose(
         applyMiddleware(...middleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (a) => a
     )
 );
 

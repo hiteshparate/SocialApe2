@@ -1,11 +1,14 @@
-import { AppBar, Button, Icon, Toolbar, Tooltip } from '@material-ui/core'
-import { Add, Home, Notifications } from '@material-ui/icons';
+import { AppBar, Button, Icon, IconButton, Toolbar, Tooltip } from '@material-ui/core'
+import { Add, Home } from '@material-ui/icons';
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import PostScream from './PostScream';
+import PostScream from '../scream/PostScream'
+import Notifications from './Notifications'
 
 export class NavBar extends Component {
+
+
     render() {
         const { authenticated } = this.props;
         return (
@@ -16,15 +19,12 @@ export class NavBar extends Component {
                             <PostScream></PostScream>
 
                             <Tooltip title="Home">
-                                <Icon>
-                                    <Home />
-                                </Icon>
+                                <Button color="inherit" component={Link} to="/">
+                                    <Home>
+                                    </Home>
+                                </Button>
                             </Tooltip>
-                            <Tooltip title="Notifications">
-                                <Icon>
-                                    <Notifications />
-                                </Icon>
-                            </Tooltip>
+                            <Notifications></Notifications>
                         </Fragment>
                     ) : (
                             <Fragment>

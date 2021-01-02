@@ -3,7 +3,7 @@ import { Add, Close } from '@material-ui/icons'
 import React, { Component } from 'react'
 import { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { postScream, clearErrors } from '../redux/actions/dataAction'
+import { postScream, clearErrors } from '../../redux/actions/dataAction'
 
 const styles = {
     submitButton: {

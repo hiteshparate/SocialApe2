@@ -1,8 +1,8 @@
 import { Grid, LinearProgress } from '@material-ui/core'
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Profile from '../components/Profile';
-import Scream from '../components/Scream';
+import Profile from '../components/profile/Profile';
+import Scream from '../components/scream/Scream';
 import { getScreams } from '../redux/actions/dataAction'
 
 export class home extends Component {
@@ -19,7 +19,8 @@ export class home extends Component {
             })
         ) :
             (
-                <LinearProgress />
+                // <ScreamSkeleton></ScreamSkeleton>
+                <LinearProgress></LinearProgress>
             )
         return (
 
@@ -33,7 +34,7 @@ export class home extends Component {
             </Grid>
         )
     }
-   
+
 }
 
 const mapStateToProps = (state) => ({

@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Button, Paper, Typography, withStyles, IconButton, Tooltip } from '@material-ui/core';
 import { CalendarToday, ExitToApp, LocationOn } from '@material-ui/icons';
 import dayjs from 'dayjs';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LinkIcon from '@material-ui/icons/Link';
 import EditIcon from '@material-ui/icons/Edit';
-import { logoutUser, uploadImage } from '../redux/actions/userAction'
-import EditProfile from './EditProfile'
-
+import { logoutUser, uploadImage } from '../../redux/actions/userAction'
+import EditProfile from '../profile/EditProfile'
+import MuiLink from '@material-ui/core/Link';
 
 const styles = (theme) => ({
     ...theme.Profile
@@ -57,10 +57,10 @@ class Profile extends Component {
                         </div>
                         <hr />
                         <div className="profile-details">
-                            <Link component={Link} to={`/users/${handle}`} color="primary" variant="h5">@{handle}</Link>
+                            <MuiLink component={Link} to={`/user/${handle}`} color="primary" variant="h5">@{handle}</MuiLink>
                         </div>
                         <hr />
-                        {bio && <Typography variant="body2"> {bio}</Typography>}
+                        {bio && <Typography component="span" variant="body2"> {bio}</Typography>}
                         <hr />
                         {location && (
                             <Fragment>
@@ -92,14 +92,15 @@ class Profile extends Component {
                 </Paper>
             ) : (
                     <Paper className={classes.paper}>
-                        <Typography variant="body2" align="center">
+                        <Typography component="span" variant="body2" align="center">
                             No Profile Found,please Login Again.
-                            <hr />
-                            <div className={classes.buttons}>
-                                <Button variant="contained" color="primary" component={Link} to="/login">Login</Button>
-                                <Button variant="contained" color="secondary" component={Link} to="/signup">Signup</Button>
-                            </div>
-                        </Typography>
+                            </Typography>
+                        <hr />
+                        <div className={classes.buttons}>
+                            <Button variant="contained" color="primary" component={Link} to="/login">Login</Button>
+                            <Button variant="contained" color="secondary" component={Link} to="/signup">Signup</Button>
+                        </div>
+
                     </Paper>
                 )) :
             (

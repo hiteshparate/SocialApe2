@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "dayjs": "^1.9.6",
     "jwt-decode": "^3.1.2",
+    "live-server": "^1.2.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
