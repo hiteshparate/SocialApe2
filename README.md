@@ -1,5 +1,9 @@
 # Live Demo of the project
 <a href="https://socialape-bf36f.firebaseapp.com/"> https://socialape-bf36f.firebaseapp.com/</a>
+
+## Use this Login information for demo
+email : u1@gmail.com
+password : 123456
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
